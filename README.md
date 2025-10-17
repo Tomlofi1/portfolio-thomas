@@ -1,29 +1,29 @@
-# 🌐 Portfólio - Thomas Amorim
+# Para rodar este projeto deve-se:
+<br>
 
-Bem-vindo ao meu portfólio!  
-Este projeto é uma **landing page responsiva** desenvolvida com **HTML5** e **TailwindCSS**, apresentando meus projetos, habilidades e informações de contato.
+# Passo 1: Clone o projeto no seu terminal.
+git clone github.com/Tomlofi1/portfolio-thomas.git
+<br>
 
----
+# Passo 2: Abra o projeto no VS Code.
+<br>
 
-## 🚀 Tecnologias Utilizadas
+# Passo 3: Instale as depedëncias.
+npm i
+<br>
 
-- **HTML5** – Estrutura semântica e acessível
-- **TailwindCSS** – Estilização rápida e responsiva
-- **Mobile First** – Layout adaptado para todos os dispositivos
-- **Design Responsivo** – Grid e flexbox para adaptação fluida
+# Passo 4: Para rodar o projeto digite no terminal.
+npm run dev
 
----
 
-## 📷 Seções da Página 
+## Quais tecnologias eu utilizei no projeto?
 
-- **Header** – Navegação e identidade visual
-- **Hero** – Apresentação pessoal e CTA
-- **Projetos** – Lista de trabalhos recentes
-- **Skills** – Tecnologias e ferramentas
-- **Sobre** – Breve biografia
-- **Contato** – Formulário para mensagens
-- **Footer** – Direitos autorais
+Este projeto foi construído com:
 
-## 📬 Contato: Se quiser trocar uma ideia ou discutir um projeto, me encontre em:
-- LinkedIn: [linkedin.com/in/tomlofi](https://www.linkedin.com/in/tomlofi/)
-- E-mail: tomamorimfalcao@gmail.com
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+
