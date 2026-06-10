@@ -9,8 +9,8 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in">
           <div className="space-y-6 order-2 md:order-1">
             <div className="space-y-2">
-              <p className="text-primary text-lg font-medium">Olá, eu sou Thomas Edson.</p>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold break-words">
+              <p className="text-primary text-base sm:text-lg font-medium">Olá, eu sou Thomas Edson.</p>
+              <h1 className="text-[2.2rem] leading-tight min-[400px]:text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter sm:tracking-tight break-words">
                 <span className="gradient-text">Desenvolvedor</span>
                 <br />
                 <span className="text-foreground">Fullstack</span>
@@ -21,12 +21,12 @@ const Hero = () => {
               Especializado em criar soluções web completas e escaláveis, desde o backend até interfaces modernas e responsivas.
             </p>
             
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
                 <a
                   href="https://www.linkedin.com/in/tomlofi/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-5 py-3 bg-primary hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] rounded-md text-white"
+                  className="inline-flex justify-center items-center px-5 py-3 bg-primary hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] rounded-md text-white w-full sm:w-auto"
                 >
                   <Mail className="mr-2 h-5 w-5" />
                   Entre em Contato
@@ -36,7 +36,7 @@ const Hero = () => {
                   href="https://github.com/Tomlofi1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-5 py-3 text-sm rounded-md border border-primary/30 hover:border-primary hover:bg-primary/10"
+                  className="inline-flex justify-center items-center px-5 py-3 text-sm rounded-md border border-primary/30 hover:border-primary hover:bg-primary/10 w-full sm:w-auto"
                 >
                   Ver Projetos
                 </a>
