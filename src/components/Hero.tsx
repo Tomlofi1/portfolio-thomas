@@ -10,14 +10,14 @@ const Hero = () => {
           <div className="space-y-6 order-2 md:order-1">
             <div className="space-y-2">
               <p className="text-primary text-lg font-medium">Olá, eu sou Thomas Edson.</p>
-              <h1 className="text-5xl md:text-7xl font-bold">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold break-words">
                 <span className="gradient-text">Desenvolvedor</span>
                 <br />
                 <span className="text-foreground">Fullstack</span>
               </h1>
             </div>
             
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-lg">
               Especializado em criar soluções web completas e escaláveis, desde o backend até interfaces modernas e responsivas.
             </p>
             
@@ -58,7 +58,7 @@ const Hero = () => {
               <img 
                 src={profileImage} 
                 alt="Profile" 
-                className="relative rounded-full w-72 h-72 md:w-96 md:h-96 object-cover border-4 border-primary/20 shadow-2xl animate-float"
+                className="relative rounded-full w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover border-4 border-primary/20 shadow-2xl animate-float"
               />
             </div>
           </div>

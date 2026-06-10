@@ -6,7 +6,7 @@ const About = () => {
     <section className="py-20 px-4 bg-card/30" id="about">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Sobre <span className="gradient-text">Mim</span>
           </h2>
         </div>

@@ -33,10 +33,10 @@ const Projects = () => {
     <section className="py-20 px-4" id="projects">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Meus <span className="gradient-text">Projetos</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
             Alguns projetos que desenvolvi utilizando diferentes tecnologias
           </p>
         </div>
