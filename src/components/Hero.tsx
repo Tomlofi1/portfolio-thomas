@@ -4,13 +4,13 @@ import profileImage from "@/assets/profile.png";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-background to-card">
-      <div className="container max-w-6xl mx-auto">
+    <section className="min-h-screen flex items-center justify-center px-4 py-16 sm:py-20 bg-gradient-to-b from-background to-card">
+      <div className="w-full max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in">
-          <div className="space-y-6 order-2 md:order-1">
+          <div className="space-y-6 order-2 md:order-1 min-w-0">
             <div className="space-y-2">
               <p className="text-primary text-base sm:text-lg font-medium">Olá, eu sou Thomas Edson.</p>
-              <h1 className="text-[2.2rem] leading-tight min-[400px]:text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter sm:tracking-tight break-words">
+              <h1 className="text-[1.85rem] leading-tight min-[360px]:text-[2rem] min-[400px]:text-4xl sm:text-5xl md:text-7xl font-bold tracking-normal break-words">
                 <span className="gradient-text">Desenvolvedor</span>
                 <br />
                 <span className="text-foreground">Fullstack</span>
