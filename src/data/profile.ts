@@ -29,7 +29,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     company: "Carajás Home Center - Labs",
-    role: "Assistente de Inovação Digital · Desenvolvimento Back-end",
+    role: "Desenvolvedor Back-End",
     period: "Dez/2025 — Atual",
     current: true,
     summary:
