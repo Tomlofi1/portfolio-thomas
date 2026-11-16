@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Currículo (contém dados pessoais)
+new-curriculum/
+*:Zone.Identifier

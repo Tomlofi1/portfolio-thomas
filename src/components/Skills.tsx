@@ -1,51 +1,38 @@
-import { Card } from "@/components/ui/card";
-
-const skills = [
-  { name: ".NET", category: "Backend", icon: "🔷" },
-  { name: "Entity Framework", category: "ORM", icon: "📊" },
-  { name: "JavaScript", category: "Frontend", icon: "💛" },
-  { name: "React", category: "Frontend", icon: "⚛️" },
-  { name: "SQL", category: "Database", icon: "🗄️" },
-  { name: "MySQL", category: "Database", icon: "🐬" },
-  { name: "PostgreSQL", category: "Database", icon: "🐘" },
-  { name: "PHP", category: "Backend", icon: "🐘" },
-  { name: "Laravel", category: "Framework", icon: "🔴" },
-];
+import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import { skillGroups } from "@/data/profile";
 
 const Skills = () => {
   return (
-    <section className="py-20 px-4" id="skills">
-      <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Skills</span> & Tecnologias
-          </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-            Experiência em desenvolvimento fullstack com diversas tecnologias modernas
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {skills.map((skill, index) => (
-            <Card 
-              key={skill.name}
-              className="p-6 bg-gradient-to-br from-card to-card/50 border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] backdrop-blur-sm group cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
+    <section className="relative py-24 md:py-32 px-4 scroll-mt-16 border-t border-border/60" id="skills">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader
+          index="04"
+          eyebrow="stack"
+          title="Ferramentas do dia a dia"
+          subtitle="O que uso para construir, integrar e manter serviços back-end."
+        />
+
+        <Reveal className="card-surface divide-y divide-border overflow-hidden">
+          {skillGroups.map((group) => (
+            <div
+              key={group.title}
+              className="grid sm:grid-cols-[180px_1fr] gap-3 sm:gap-8 px-5 sm:px-8 py-5 hover:bg-secondary/30 transition-colors"
             >
-              <div className="flex flex-col items-center text-center space-y-3">
-                <span className="text-4xl group-hover:scale-110 transition-transform">
-                  {skill.icon}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
-                    {skill.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{skill.category}</p>
-                </div>
+              <h3 className="font-mono text-sm text-primary sm:pt-1">{group.title}</h3>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-md border border-border bg-background/60 px-3 py-1.5 text-sm text-foreground/90 hover:border-primary/50 hover:text-primary transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
-            </Card>
+            </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,61 +1,64 @@
-import { Card } from "@/components/ui/card";
-import { Code2, Database, Layout } from "lucide-react";
+import { Database, Server, Workflow } from "lucide-react";
+import profileImage from "@/assets/profile.jpg";
+import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import { profile } from "@/data/profile";
+
+const pillars = [
+  {
+    icon: Server,
+    title: "APIs REST",
+    text: "Validação com Zod, regras de negócio, tratamento de falhas e documentação com Swagger/OpenAPI.",
+  },
+  {
+    icon: Workflow,
+    title: "Integrações & eventos",
+    text: "Webhooks, jobs e SSE conectando plataformas externas aos sistemas internos — sem duplicidades.",
+  },
+  {
+    icon: Database,
+    title: "Dados",
+    text: "MySQL, Oracle, PostgreSQL e Redis — consultas SQL, modelagem e controle de concorrência.",
+  },
+];
 
 const About = () => {
   return (
-    <section className="py-20 px-4 bg-card/30" id="about">
-      <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Sobre <span className="gradient-text">Mim</span>
-          </h2>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <Card className="p-8 bg-gradient-to-br from-card to-card/50 border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] backdrop-blur-sm group">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="p-4 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                <Code2 className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold">Backend</h3>
-              <p className="text-muted-foreground">
-                Desenvolvimento robusto com .NET, PHP e Laravel, criando APIs escaláveis e seguras
-              </p>
+    <section className="relative py-24 md:py-32 px-4 scroll-mt-16" id="about">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader index="01" eyebrow="sobre" title="Quem está por trás das integrações" />
+
+        <div className="grid md:grid-cols-[260px_1fr] lg:grid-cols-[300px_1fr] gap-10 lg:gap-16 items-start">
+          <Reveal className="mx-auto md:mx-0 w-full max-w-[300px]">
+            <div className="relative">
+              <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-primary/40" aria-hidden />
+              <img
+                src={profileImage}
+                alt={`Foto de ${profile.name}`}
+                className="relative aspect-[4/5] w-full rounded-2xl object-cover border border-border"
+              />
             </div>
-          </Card>
-          
-          <Card className="p-8 bg-gradient-to-br from-card to-card/50 border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] backdrop-blur-sm group">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="p-4 bg-accent/10 rounded-lg group-hover:bg-accent/20 transition-colors">
-                <Layout className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-xl font-semibold">Frontend</h3>
-              <p className="text-muted-foreground">
-                Interfaces modernas e responsivas com React e JavaScript, focando em UX excepcional
-              </p>
+          </Reveal>
+
+          <div className="space-y-10">
+            <Reveal className="space-y-5 max-w-2xl" delay={100}>
+              {profile.summary.map((paragraph) => (
+                <p key={paragraph} className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </Reveal>
+
+            <div className="grid sm:grid-cols-3 gap-4">
+              {pillars.map(({ icon: Icon, title, text }, i) => (
+                <Reveal key={title} delay={150 + i * 100} className="card-surface p-5">
+                  <Icon className="h-5 w-5 text-primary mb-4" />
+                  <h3 className="font-display font-semibold mb-2">{title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+                </Reveal>
+              ))}
             </div>
-          </Card>
-          
-          <Card className="p-8 bg-gradient-to-br from-card to-card/50 border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] backdrop-blur-sm group">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="p-4 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                <Database className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold">Database</h3>
-              <p className="text-muted-foreground">
-                Experiência com SQL, MySQL e PostgreSQL para modelagem e otimização de dados
-              </p>
-            </div>
-          </Card>
-        </div>
-        
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Desenvolvedor fullstack apaixonado por tecnologia e solução de problemas. Com sólida experiência 
-            em desenvolvimento backend e frontend, busco sempre entregar soluções de alta qualidade que 
-            agregam valor real aos negócios. Constantemente aprendendo e me adaptando às novas tecnologias 
-            para criar aplicações modernas e eficientes.
-          </p>
+          </div>
         </div>
       </div>
     </section>

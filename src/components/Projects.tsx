@@ -1,123 +1,150 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, Building2, Check, Github, Lock, Sparkles } from "lucide-react";
+import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import { profile, projects, type Project } from "@/data/profile";
 
-const projects = [
-  {
-    title: "Biblioteca Virtual",
-    description: "Aplicação backend para gestão de uma biblioteca com .NET e PostgreSQL",
-    tech: [".NET", "PostgreSQL"],
-    gradient: "from-blue-500/10 to-purple-500/10",
-    repoUrl: "https://github.com/Tomlofi1/Biblioteca-Virtual",
-    demoUrl: ""
-  },
-  {
-    title: "Sistema web de Ponto Eletrônico",
-    description: "Sistema web feito em Laravel para consultas do ponto eletrônico",
-    tech: ["Laravel", "PHP", "MySQL"],
-    gradient: "from-purple-500/10 to-pink-500/10",
-    privateMessage: "código não disponível publicamente."
-  },
-  {
-    title: "Portfólio Pessoal",
-    description: "Meu portfólio pessoal desenvolvido com React e Tailwind CSS",
-    tech: ["React", "JavaScript"],
-    gradient: "from-cyan-500/10 to-blue-500/10",
-    repoUrl: "",
-    demoUrl: ""
-  }
-];
+const ProjectCard = ({ project, delay }: { project: Project; delay: number }) => {
+  const wide = project.featured;
+
+  return (
+    <Reveal
+      delay={delay}
+      className={`card-surface group relative overflow-hidden p-6 sm:p-8 ${wide ? "md:col-span-2" : ""}`}
+    >
+      <div
+        className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        aria-hidden
+      />
+
+      <div className={`relative ${wide ? "md:grid md:grid-cols-[1.1fr_1fr] md:gap-10" : ""}`}>
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between gap-4 mb-5">
+            <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+              {project.kind === "professional" ? (
+                <>
+                  <Building2 className="h-3.5 w-3.5 text-primary" /> Carajás Labs
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-3.5 w-3.5 text-accent" /> Projeto pessoal
+                </>
+              )}
+            </span>
+            {project.kind === "professional" && (
+              <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground/80">
+                <Lock className="h-3 w-3" /> código proprietário
+              </span>
+            )}
+          </div>
+
+          <h3 className="font-display text-xl sm:text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-6">{project.description}</p>
+
+          <div className="flex flex-wrap gap-1.5 mt-auto">
+            {project.tech.map((tech) => (
+              <span key={tech} className="chip">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {(project.repoUrl || project.demoUrl) && (
+            <div className="flex flex-wrap gap-4 mt-6">
+              {project.repoUrl && (
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm text-foreground hover:text-primary transition-colors"
+                >
+                  <Github className="h-4 w-4" /> Código <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              )}
+              {project.demoUrl && (
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm text-foreground hover:text-primary transition-colors"
+                >
+                  Demo <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        {project.highlights && (
+          <ul className={`space-y-2.5 ${wide ? "mt-8 md:mt-0 self-center" : "mt-6"}`}>
+            {project.highlights.map((item) => (
+              <li
+                key={item}
+                className={`flex items-start gap-3 text-sm ${
+                  wide ? "rounded-xl border border-border bg-background/50 p-3.5" : ""
+                }`}
+              >
+                <Check className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+                <span className="text-foreground/85">{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </Reveal>
+  );
+};
+
+const Group = ({ label, items }: { label: string; items: Project[] }) => (
+  <div>
+    <Reveal className="flex items-center gap-4 mb-6">
+      <h3 className="font-mono text-sm text-muted-foreground whitespace-nowrap">{label}</h3>
+      <div className="h-px flex-1 bg-border" />
+    </Reveal>
+    <div className="grid md:grid-cols-2 gap-5">
+      {items.map((project, i) => (
+        <ProjectCard key={project.title} project={project} delay={i * 80} />
+      ))}
+    </div>
+  </div>
+);
 
 const Projects = () => {
-  return (
-    <section className="py-20 px-4" id="projects">
-      <div className="container max-w-6xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Meus <span className="gradient-text">Projetos</span>
-          </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-            Alguns projetos que desenvolvi utilizando diferentes tecnologias
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card 
-              key={project.title}
-              className="p-6 bg-gradient-to-br from-card to-card/50 border-primary/20 hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] backdrop-blur-sm group overflow-hidden relative"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-              
-              <div className="relative z-10 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                
-                <p className="text-muted-foreground">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span 
-                      key={tech}
-                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex gap-3 pt-4">
-                  {project.privateMessage ? (
-                    <Button variant="outline" size="sm" className="border-primary/30" disabled>
-                      <Github className="mr-2 h-4 w-4" />
-                      {project.privateMessage}
-                    </Button>
-                  ) : (
-                    <>
-                      {project.repoUrl ? (
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center px-3 py-1 text-sm rounded-md border border-primary/30 hover:border-primary hover:bg-primary/10"
-                        >
-                          <Github className="mr-2 h-4 w-4" />
-                          Código
-                        </a>
-                      ) : (
-                        <Button variant="outline" size="sm" className="border-primary/30" disabled>
-                          <Github className="mr-2 h-4 w-4" />
-                          Código
-                        </Button>
-                      )}
+  const professional = projects.filter((p) => p.kind === "professional");
+  const personal = projects.filter((p) => p.kind === "personal");
 
-                      {project.demoUrl ? (
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center px-3 py-1 text-sm rounded-md border border-primary/30 hover:border-primary hover:bg-primary/10"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Demo
-                        </a>
-                      ) : (
-                        <Button variant="outline" size="sm" className="border-primary/30" disabled>
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Demo
-                        </Button>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-            </Card>
-          ))}
+  return (
+    <section className="relative py-24 md:py-32 px-4 scroll-mt-16 border-t border-border/60" id="projects">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader
+          index="03"
+          eyebrow="projetos"
+          title={
+            <>
+              O que eu <span className="gradient-text">construí</span>
+            </>
+          }
+          subtitle="Entregas do trabalho na Carajás Labs (descritas em alto nível, já que o código é proprietário) e projetos pessoais."
+        />
+
+        <div className="space-y-14">
+          <Group label="profissionais" items={professional} />
+          <Group label="pessoais" items={personal} />
         </div>
+
+        <Reveal className="mt-12">
+          <a
+            href={`${profile.github}?tab=repositories`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            <Github className="h-4 w-4" />
+            ver todos os repositórios no github
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </Reveal>
       </div>
     </section>
   );

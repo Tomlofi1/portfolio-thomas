@@ -1,44 +1,83 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Check, Copy, Github, Linkedin } from "lucide-react";
+import Reveal from "@/components/Reveal";
+import { profile } from "@/data/profile";
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
+    }
+  };
+
   return (
-    <footer className="py-12 px-4 border-t border-primary/10 bg-card/30">
-      <div className="container max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold gradient-text mb-2">Vamos Conversar?</h3>
-            <p className="text-muted-foreground">
-              Disponível para projetos freelance e oportunidades
-            </p>
+    <footer className="relative px-4 pt-24 md:pt-32 pb-10 scroll-mt-16 border-t border-border/60 overflow-hidden" id="contact">
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[360px] w-[min(900px,100vw)] rounded-full bg-primary/10 blur-[120px]"
+        aria-hidden
+      />
+
+      <div className="relative max-w-6xl mx-auto">
+        <Reveal className="max-w-3xl">
+          <p className="font-mono text-sm mb-4">
+            <span className="text-primary">06</span>
+            <span className="text-muted-foreground"> // contato</span>
+          </p>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.05]">
+            Tem uma integração para <span className="gradient-text">tirar do papel</span>?
+          </h2>
+          <p className="mt-5 text-muted-foreground text-base sm:text-lg max-w-xl">
+            Estou aberto a oportunidades e conversas sobre desenvolvimento back-end. Respondo por email ou LinkedIn.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
+            <a
+              href={`mailto:${profile.email}`}
+              className="font-display text-lg sm:text-2xl font-semibold text-foreground hover:text-primary transition-colors break-all"
+            >
+              {profile.email}
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 font-mono text-xs text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+            >
+              {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Copy className="h-3.5 w-3.5" />}
+              {copied ? "copiado!" : "copiar"}
+            </button>
           </div>
-          
-          <div className="flex gap-6">
-            <a 
-              href="mailto:tomamorimfalcao@gmail.com" 
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
-              <Mail className="h-5 w-5" />
-              <span className="hidden sm:inline">Email</span>
+              <Linkedin className="h-4 w-4" /> LinkedIn <ArrowUpRight className="h-4 w-4" />
             </a>
-            <a 
-              href="https://github.com/Tomlofi1" 
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-3 hover:border-primary/50 hover:bg-card transition-colors"
             >
-              <Github className="h-5 w-5" />
-              <span className="hidden sm:inline">GitHub</span>
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/tomlofi/" 
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin className="h-5 w-5" />
-              <span className="hidden sm:inline">LinkedIn</span>
+              <Github className="h-4 w-4" /> GitHub <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
-        </div>
-        
-        <div className="mt-8 pt-8 border-t border-primary/10 text-center text-muted-foreground text-sm">
-          <p>© 2025 - Desenvolvedor Fullstack. Todos os direitos reservados.</p>
+        </Reveal>
+
+        <div className="mt-24 pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between gap-2 font-mono text-xs text-muted-foreground">
+          <p>
+            © {new Date().getFullYear()} {profile.name}
+          </p>
+          <p>feito com React, TypeScript & Tailwind · {profile.location}</p>
         </div>
       </div>
     </footer>
